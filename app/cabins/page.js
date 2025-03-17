@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import CabinList from "../_components/CabinList";
 import Spinner from "../_components/Spinner";
 import Filter from "../_components/Filter";
+import ReservationReminder from "../_components/ReservationReminder";
 // cache revalidation
 export const revalidate = 3600;
 export const  metadata = {
@@ -32,6 +33,7 @@ export default function Page({ searchParams }) {
 
       </div>
       <Suspense fallback={<Spinner />} key={filter}>
+        <ReservationReminder />
         <CabinList filter={filter} />
       </Suspense>
     </div>
