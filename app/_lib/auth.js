@@ -9,10 +9,19 @@ export const authConfig = {
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
     }),
   ],
+  callbacks: {
+   authorized({auth, request}) {
+    return !!auth?.user;
+   }
+  },
+  pages: {
+    signIn: "/login",
+  },
 };
 
-// Initialize NextAuth
-const handler = NextAuth(authConfig);
-
-// Export handler and authConfig
-export { handler };
+export const {
+  auth, 
+  signIn,
+  signOut,
+  handlers: {GET, POST},
+} = NextAuth(authConfig);
